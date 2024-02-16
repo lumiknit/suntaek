@@ -7,6 +7,7 @@
   import BsTrash from "svelte-icons-pack/bs/BsTrash";
   import { rollDice } from "./lib/dice";
 
+  let allowDuplicates = true;
   let count = 1;
   let chosens = undefined;
   let choices = [""];
@@ -15,14 +16,9 @@
     chosens = undefined;
     // Extract non-empty choices
     const nonEmptyChoices = choices
-      .map((choice) => choice.trim())
-      .filter(Boolean);
-    if (
-      nonEmptyChoices.length !== choices.length &&
-      nonEmptyChoices.length > 0
-    ) {
-      choices = nonEmptyChoices;
-    }
+      .map((choice, idx) => [choice.trim(), idx])
+      .filter((x) => x[0].length > 0);
+
     if (nonEmptyChoices.length === 0) {
       toast.error("Nothing to choose!");
       return;
@@ -32,8 +28,14 @@
     const results = [];
 
     for(let i = 0; i < count; i++) {
+      if(nonEmptyChoices.length === 0) {
+        toast("No more choices to choose!");
+        break;
+      }
+
       const chosenIndex = Math.floor(Math.random() * nonEmptyChoices.length);
-      let result = nonEmptyChoices[chosenIndex];
+      const chosenItem = nonEmptyChoices[chosenIndex];
+      let result = chosenItem[0];
       let notes = "";
 
       // Check dice roll
@@ -46,13 +48,18 @@
       }
 
       results.push({
-        index: chosenIndex,
+        index: chosenItem[1],
         result,
         notes,
       });
+
+      if (!allowDuplicates) {
+        nonEmptyChoices.splice(chosenIndex, 1);
+      }
     }
 
     chosens = results;
+    toast.success("Chosen!");
   };
 
   const handleInputFocus = (idx) => {
@@ -77,7 +84,9 @@
   </hgroup>
 </header>
 
-<Toaster />
+<Toaster
+  position="bottom-center"
+/>
 
 <main class="container">
   {#if chosens}
@@ -97,15 +106,25 @@
 
   <button class="line" on:click={handleChooseButtonClick}> Choose! </button>
 
-  <h4> Count </h4>
+  <details>
+    <summary class="outline secondary">Options</summary>
 
-  <input
-    type="number"
-    min="1"
-    bind:value={count}
-  />
+    <label>
+      <input type="checkbox" bind:checked={allowDuplicates} />
+      Allow Duplicates
+    </label>
 
-  <h4> Choices </h4>
+    <h6> Count </h6>
+    <input
+      type="number"
+      min="1"
+      bind:value={count}
+    />
+  </details>
+
+  <hr />
+
+  <h4> Choices ({choices.length}) </h4>
   {#each choices as choice, idx}
     <fieldset role="group">
       <input
