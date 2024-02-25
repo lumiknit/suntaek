@@ -5,6 +5,7 @@
 
   import Icon from "svelte-icons-pack/Icon.svelte";
   import BsTrash from "svelte-icons-pack/bs/BsTrash";
+  import BsPlusSquareFill from "svelte-icons-pack/bs/BsPlusSquareFill";
   import { rollDice } from "./lib/dice";
 
   let allowDuplicates = true;
@@ -27,8 +28,8 @@
     // Randomly choose one
     const results = [];
 
-    for(let i = 0; i < count; i++) {
-      if(nonEmptyChoices.length === 0) {
+    for (let i = 0; i < count; i++) {
+      if (nonEmptyChoices.length === 0) {
         toast("No more choices to choose!");
         break;
       }
@@ -62,9 +63,13 @@
     toast.success("Chosen!");
   };
 
-  const handleInputFocus = (idx) => {
-    if (idx + 1 >= choices.length) {
-      choices = [...choices, ""];
+  const addInputField = () => {
+    choices = [...choices, ""];
+  };
+
+  const onKeyDown = (e, idx) => {
+    if (e.keyCode === 13) {
+      addInputField(idx + 1);
     }
   };
 
@@ -83,14 +88,11 @@
     <p>Random Choice Utility</p>
   </hgroup>
 </header>
-
-<Toaster
-  position="bottom-center"
-/>
+<Toaster position="bottom-center" />
 
 <main class="container">
   {#if chosens}
-    <h4> Result </h4>
+    <h4>Result</h4>
     <ol>
       {#each chosens as chosen}
         <li>
@@ -114,30 +116,31 @@
       Allow Duplicates
     </label>
 
-    <h6> Count </h6>
-    <input
-      type="number"
-      min="1"
-      bind:value={count}
-    />
+    <h6>Count</h6>
+    <input type="number" min="1" bind:value={count} />
   </details>
 
   <hr />
 
-  <h4> Choices ({choices.length}) </h4>
+  <h4>Choices ({choices.length})</h4>
   {#each choices as choice, idx}
     <fieldset role="group">
       <input
         type="text"
         bind:value={choice}
-        on:focus={() => handleInputFocus(idx)}
+        on:keydown={(e) => onKeyDown(e, idx)}
+        autofocus
       />
       <button on:click={() => handleDeleteButtonClick(idx)}>
         <Icon src={BsTrash} />
       </button>
     </fieldset>
   {/each}
-
+  <fieldset role="group">
+    <button on:click={addInputField} autofocus>
+      <Icon src={BsPlusSquareFill} />
+    </button>
+  </fieldset>
   <h4>Tips</h4>
   <ul>
     <li>Click last item to add more choices!</li>
