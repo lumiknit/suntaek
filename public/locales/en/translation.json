@@ -1,0 +1,41 @@
+{
+	"title": {
+		"main": "Suntaek (Random Choice)",
+		"sub": "Random Choice Utility"
+	},
+	"clickable": {
+		"btn": {
+			"main_choose": "Choose!"
+		},
+		"label": {
+			"go_to_top": "Go to Top"
+		}
+	},
+	"result": {
+		"title": "Result"
+	},
+	"options": {
+		"title": "Options",
+		"label": {
+			"allow_duplicates": "Allow Duplicates",
+			"count": "Count"
+		}
+	},
+	"output": {
+		"title": "Choices ({{count}})"
+	},
+	"tips": {
+		"title": "Tips",
+		"1": "Click last item to add more choices!",
+		"2": "It supports dice notations!",
+		"2_1": "You can use common number & operators ({{operators}}) with dice notation {{notation}}",
+		"2_2": "e.g. roll a 6-sided dice",
+		"2_3": "e.g. roll four 4-sided dice and add 2"
+	},
+	"toast": {
+		"success_chosen": "Chosen!",
+		"error_no_items_to_choose": "Nothing to choose!",
+		"error_no_items_more": "No more choices to choose!",
+		"error_delete_last_item": "At least one choice is required"
+	}
+}

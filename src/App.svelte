@@ -7,6 +7,8 @@
   import BsTrash from "svelte-icons-pack/bs/BsTrash";
   import { rollDice } from "./lib/dice";
 
+  import i18n from "./lang";
+
   let allowDuplicates = true;
   let count = 1;
   let chosens = undefined;
@@ -20,16 +22,16 @@
       .filter((x) => x[0].length > 0);
 
     if (nonEmptyChoices.length === 0) {
-      toast.error("Nothing to choose!");
+      toast.error($i18n.t("toast.error_no_items_to_choose"));
       return;
     }
 
     // Randomly choose one
     const results = [];
 
-    for(let i = 0; i < count; i++) {
-      if(nonEmptyChoices.length === 0) {
-        toast("No more choices to choose!");
+    for (let i = 0; i < count; i++) {
+      if (nonEmptyChoices.length === 0) {
+        toast($i18n.t("toast.error_no_items_more"));
         break;
       }
 
@@ -59,7 +61,7 @@
     }
 
     chosens = results;
-    toast.success("Chosen!");
+    toast.success($i18n.t("toast.success_chosen"));
   };
 
   const handleInputFocus = (idx) => {
@@ -70,7 +72,7 @@
 
   const handleDeleteButtonClick = (idx) => {
     if (choices.length <= 1) {
-      toast.error("At least one choice is required");
+      toast.error($i18n.t("toast.error_delete_last_item"));
       return;
     }
     choices = choices.filter((_, i) => i !== idx);
@@ -79,18 +81,16 @@
 
 <header class="container">
   <hgroup>
-    <h1>Suntaek (Random Choice)</h1>
-    <p>Random Choice Utility</p>
+    <h1>{$i18n.t('title.main')}</h1>
+    <p>{$i18n.t('title.sub')}</p>
   </hgroup>
 </header>
 
-<Toaster
-  position="bottom-center"
-/>
+<Toaster position="bottom-center" />
 
 <main class="container">
   {#if chosens}
-    <h4> Result </h4>
+    <h4>{$i18n.t('result.title')}</h4>
     <ol>
       {#each chosens as chosen}
         <li>
@@ -104,27 +104,23 @@
     </ol>
   {/if}
 
-  <button class="line" on:click={handleChooseButtonClick}> Choose! </button>
+  <button class="line" on:click={handleChooseButtonClick}> {$i18n.t('clickable.btn.main_choose')} </button>
 
   <details>
-    <summary class="outline secondary">Options</summary>
+    <summary class="outline secondary">{$i18n.t('options.title')}</summary>
 
     <label>
       <input type="checkbox" bind:checked={allowDuplicates} />
-      Allow Duplicates
+      {$i18n.t('options.label.allow_duplicates')}
     </label>
 
-    <h6> Count </h6>
-    <input
-      type="number"
-      min="1"
-      bind:value={count}
-    />
+    <h6>{$i18n.t('options.label.count')}</h6>
+    <input type="number" min="1" bind:value={count} />
   </details>
 
   <hr />
 
-  <h4> Choices ({choices.length}) </h4>
+  <h4>{$i18n.t('output.title', {count: choices.length})}</h4>
   {#each choices as choice, idx}
     <fieldset role="group">
       <input
@@ -138,21 +134,23 @@
     </fieldset>
   {/each}
 
-  <h4>Tips</h4>
+  <h4>{$i18n.t('tips.title')}</h4>
   <ul>
-    <li>Click last item to add more choices!</li>
+    <li>{$i18n.t('tips.1')}</li>
     <li>
-      It supports dice notations!
+      {$i18n.t('tips.2')}
       <ul>
         <li>
-          You can use common number & operators (<code>+-*/</code>) with dice
-          notation <code>(count) d (sides)</code>
+          {$i18n.t('tips.2_1', {
+            operators: "+-*/",
+            notation: "NdM",
+          })}
         </li>
         <li>
-          e.g. roll a 6-sided dice: <code>d6</code>
+          {$i18n.t('tips.2_eg1')}: <code>d6</code>
         </li>
         <li>
-          e.g. roll four 4-sided dice and add 2: <code>4d4 + 2</code>
+          {$i18n.t('tips.2_eg2')}: <code>4d4 + 2</code>
         </li>
       </ul>
     </li>
@@ -163,7 +161,7 @@
     on:click={(e) => {
       e.preventDefault();
       window.scrollTo({ top: 0, behavior: "smooth" });
-    }}>Go to top</a
+    }}>{$i18n.t('clickable.label.go_to_top')}</a
   >
 </main>
 
