@@ -30,19 +30,9 @@
     // Randomly choose one
     const results = [];
 
-<<<<<<< HEAD
-    for (let i = 0; i < count; i++) {
-      if (nonEmptyChoices.length === 0) {
+    for  (let i = 0; i < count; i++) {
+      if  (nonEmptyChoices.length === 0) {
         toast($i18n.t("toast.error_no_items_more"));
-||||||| 26729a1
-    for(let i = 0; i < count; i++) {
-      if(nonEmptyChoices.length === 0) {
-        toast("No more choices to choose!");
-=======
-    for (let i = 0; i < count; i++) {
-      if (nonEmptyChoices.length === 0) {
-        toast("No more choices to choose!");
->>>>>>> main
         break;
       }
 
@@ -100,27 +90,11 @@
     <p>{$i18n.t('title.sub')}</p>
   </hgroup>
 </header>
-<<<<<<< HEAD
-
 <Toaster position="bottom-center" />
-||||||| 26729a1
-
-<Toaster
-  position="bottom-center"
-/>
-=======
-<Toaster position="bottom-center" />
->>>>>>> main
 
 <main class="container">
   {#if chosens}
-<<<<<<< HEAD
     <h4>{$i18n.t('result.title')}</h4>
-||||||| 26729a1
-    <h4> Result </h4>
-=======
-    <h4>Result</h4>
->>>>>>> main
     <ol>
       {#each chosens as chosen}
         <li>
@@ -144,31 +118,13 @@
       {$i18n.t('options.label.allow_duplicates')}
     </label>
 
-<<<<<<< HEAD
     <h6>{$i18n.t('options.label.count')}</h6>
     <input type="number" min="1" bind:value={count} />
-||||||| 26729a1
-    <h6> Count </h6>
-    <input
-      type="number"
-      min="1"
-      bind:value={count}
-    />
-=======
-    <h6>Count</h6>
-    <input type="number" min="1" bind:value={count} />
->>>>>>> main
   </details>
 
   <hr />
 
-<<<<<<< HEAD
   <h4>{$i18n.t('output.title', {count: choices.length})}</h4>
-||||||| 26729a1
-  <h4> Choices ({choices.length}) </h4>
-=======
-  <h4>Choices ({choices.length})</h4>
->>>>>>> main
   {#each choices as choice, idx}
     <fieldset role="group">
       <input
@@ -182,22 +138,13 @@
       </button>
     </fieldset>
   {/each}
-<<<<<<< HEAD
-
-  <h4>{$i18n.t('tips.title')}</h4>
-||||||| 26729a1
-
-  <h4>Tips</h4>
-=======
   <fieldset role="group">
     <button on:click={addInputField} autofocus>
       <Icon src={BsPlusSquareFill} />
     </button>
   </fieldset>
-  <h4>Tips</h4>
->>>>>>> main
+  <h4>{$i18n.t('tips.title')}</h4>
   <ul>
-    <li>{$i18n.t('tips.1')}</li>
     <li>
       {$i18n.t('tips.2')}
       <ul>
