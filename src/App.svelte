@@ -67,7 +67,7 @@
     choices = [...choices, ""];
   };
 
-  const onKeyDown = (e, idx) => {
+  const handleKeyDown = (e, idx) => {
     if (e.keyCode === 13) {
       addInputField(idx + 1);
     }
@@ -128,7 +128,7 @@
       <input
         type="text"
         bind:value={choice}
-        on:keydown={(e) => onKeyDown(e, idx)}
+        on:keydown={(e) => handleKeyDown(e, idx)}
         autofocus
       />
       <button on:click={() => handleDeleteButtonClick(idx)}>
