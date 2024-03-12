@@ -63,6 +63,10 @@
 
     chosens = results;
     toast.success($i18n.t("toast.success_chosen"));
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   };
 
   const addInputField = () => {
@@ -97,8 +101,8 @@
     <h4>{$i18n.t("result.title")}</h4>
     <ol>
       {#each chosens as chosen}
-        <li>
-          ({1 + chosen.index})
+        <li class="chosen">
+          <div class="index">#{1 + chosen.index}</div>
           <b>{chosen.result}</b>
           {#if chosen.notes}
             <small>({chosen.notes})</small>
@@ -135,16 +139,21 @@
         on:keydown={(e) => handleKeyDown(e, idx)}
         autofocus
       />
-      <button on:click={() => handleDeleteButtonClick(idx)}>
+      <button class="secondary" on:click={() => handleDeleteButtonClick(idx)}>
         <Icon src={BsTrash} />
       </button>
     </fieldset>
   {/each}
   <fieldset role="group">
-    <button on:click={addInputField} autofocus>
+    <button class="secondary" on:click={addInputField} autofocus>
       <Icon src={BsPlusSquareFill} />
     </button>
   </fieldset>
+
+  <button class="line" on:click={handleChooseButtonClick}>
+    {$i18n.t("clickable.btn.main_choose")}
+  </button>
+
   <h4>{$i18n.t("tips.title")}</h4>
   <ul>
     <li>
@@ -176,8 +185,35 @@
 </main>
 
 <style>
+  :root {
+    margin: 0.5rem 0rem;
+  }
+
   .line {
     width: 100%;
     margin-bottom: 1rem;
+  }
+
+  li.chosen {
+    position: relative;
+    font-size: 1.5rem;
+    padding: 0.5rem 1rem;
+    background-color: #8882;
+    border-radius: 1rem;
+
+    & div.index {
+      position: absolute;
+      top: 0.5rem;
+      right: 1rem;
+      z-index: -1;
+
+      font-size: 1rem;
+      color: #8888;
+    }
+
+    & small {
+      font-size: 0.75em;
+      color: #888d;
+    }
   }
 </style>

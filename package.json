@@ -14,7 +14,8 @@
     "prettier": "^3.2.5",
     "prettier-plugin-svelte": "^3.2.2",
     "svelte": "^4.2.12",
-    "vite": "^5.1.6"
+    "vite": "^5.1.6",
+    "vite-bundle-visualizer": "^1.0.1"
   },
   "dependencies": {
     "@picocss/pico": "^2.0.6",
