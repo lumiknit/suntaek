@@ -30,8 +30,8 @@
     // Randomly choose one
     const results = [];
 
-    for  (let i = 0; i < count; i++) {
-      if  (nonEmptyChoices.length === 0) {
+    for (let i = 0; i < count; i++) {
+      if (nonEmptyChoices.length === 0) {
         toast($i18n.t("toast.error_no_items_more"));
         break;
       }
@@ -86,15 +86,15 @@
 
 <header class="container">
   <hgroup>
-    <h1>{$i18n.t('title.main')}</h1>
-    <p>{$i18n.t('title.sub')}</p>
+    <h1>{$i18n.t("title.main")}</h1>
+    <p>{$i18n.t("title.sub")}</p>
   </hgroup>
 </header>
 <Toaster position="bottom-center" />
 
 <main class="container">
   {#if chosens}
-    <h4>{$i18n.t('result.title')}</h4>
+    <h4>{$i18n.t("result.title")}</h4>
     <ol>
       {#each chosens as chosen}
         <li>
@@ -108,23 +108,25 @@
     </ol>
   {/if}
 
-  <button class="line" on:click={handleChooseButtonClick}> {$i18n.t('clickable.btn.main_choose')} </button>
+  <button class="line" on:click={handleChooseButtonClick}>
+    {$i18n.t("clickable.btn.main_choose")}
+  </button>
 
   <details>
-    <summary class="outline secondary">{$i18n.t('options.title')}</summary>
+    <summary class="outline secondary">{$i18n.t("options.title")}</summary>
 
     <label>
       <input type="checkbox" bind:checked={allowDuplicates} />
-      {$i18n.t('options.label.allow_duplicates')}
+      {$i18n.t("options.label.allow_duplicates")}
     </label>
 
-    <h6>{$i18n.t('options.label.count')}</h6>
+    <h6>{$i18n.t("options.label.count")}</h6>
     <input type="number" min="1" bind:value={count} />
   </details>
 
   <hr />
 
-  <h4>{$i18n.t('output.title', {count: choices.length})}</h4>
+  <h4>{$i18n.t("output.title", { count: choices.length })}</h4>
   {#each choices as choice, idx}
     <fieldset role="group">
       <input
@@ -143,22 +145,22 @@
       <Icon src={BsPlusSquareFill} />
     </button>
   </fieldset>
-  <h4>{$i18n.t('tips.title')}</h4>
+  <h4>{$i18n.t("tips.title")}</h4>
   <ul>
     <li>
-      {$i18n.t('tips.2')}
+      {$i18n.t("tips.2")}
       <ul>
         <li>
-          {$i18n.t('tips.2_1', {
+          {$i18n.t("tips.2_1", {
             operators: "+-*/",
             notation: "NdM",
           })}
         </li>
         <li>
-          {$i18n.t('tips.2_eg1')}: <code>d6</code>
+          {$i18n.t("tips.2_eg1")}: <code>d6</code>
         </li>
         <li>
-          {$i18n.t('tips.2_eg2')}: <code>4d4 + 2</code>
+          {$i18n.t("tips.2_eg2")}: <code>4d4 + 2</code>
         </li>
       </ul>
     </li>
@@ -169,7 +171,7 @@
     on:click={(e) => {
       e.preventDefault();
       window.scrollTo({ top: 0, behavior: "smooth" });
-    }}>{$i18n.t('clickable.label.go_to_top')}</a
+    }}>{$i18n.t("clickable.label.go_to_top")}</a
   >
 </main>
 
