@@ -5,7 +5,8 @@
 
   import Icon from "svelte-icons-pack/Icon.svelte";
   import BsTrash from "svelte-icons-pack/bs/BsTrash";
-  import BsPlusSquareFill from "svelte-icons-pack/bs/BsPlusSquareFill";
+  import BsPlusSquare from "svelte-icons-pack/bs/BsPlusSquare";
+  import BsDice3 from "svelte-icons-pack/bs/BsDice3";
   import { rollDice } from "./lib/dice";
 
   import i18n from "./lang";
@@ -81,10 +82,12 @@
 
   const handleDeleteButtonClick = (idx) => {
     if (choices.length <= 1) {
-      toast.error($i18n.t("toast.error_delete_last_item"));
+      // In this case, reset whole list
+      choices = [""];
       return;
+    } else {
+      choices = choices.filter((_, i) => i !== idx);
     }
-    choices = choices.filter((_, i) => i !== idx);
   };
 </script>
 
@@ -94,7 +97,19 @@
     <p>{$i18n.t("title.sub")}</p>
   </hgroup>
 </header>
-<Toaster position="bottom-center" />
+<Toaster
+  position="top-center"
+  toastOptions={{
+    className: "toast-item",
+  }}
+/>
+
+<div class="btn-choose-wrap">
+  <button class="btn-choose" on:click={handleChooseButtonClick}>
+    <Icon src={BsDice3} />
+    {$i18n.t("clickable.btn.main_choose")}
+  </button>
+</div>
 
 <main class="container">
   {#if chosens}
@@ -111,10 +126,6 @@
       {/each}
     </ol>
   {/if}
-
-  <button class="line" on:click={handleChooseButtonClick}>
-    {$i18n.t("clickable.btn.main_choose")}
-  </button>
 
   <details>
     <summary class="outline secondary">{$i18n.t("options.title")}</summary>
@@ -139,20 +150,19 @@
         on:keydown={(e) => handleKeyDown(e, idx)}
         autofocus
       />
-      <button class="secondary" on:click={() => handleDeleteButtonClick(idx)}>
+      <button
+        class="secondary btn-delete"
+        on:click={() => handleDeleteButtonClick(idx)}
+      >
         <Icon src={BsTrash} />
       </button>
     </fieldset>
   {/each}
   <fieldset role="group">
-    <button class="secondary" on:click={addInputField} autofocus>
-      <Icon src={BsPlusSquareFill} />
+    <button class="outline secondary" on:click={addInputField} autofocus>
+      <Icon src={BsPlusSquare} />
     </button>
   </fieldset>
-
-  <button class="line" on:click={handleChooseButtonClick}>
-    {$i18n.t("clickable.btn.main_choose")}
-  </button>
 
   <h4>{$i18n.t("tips.title")}</h4>
   <ul>
@@ -215,5 +225,44 @@
       font-size: 0.75em;
       color: #888d;
     }
+  }
+
+  .btn-delete {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .btn-choose-wrap {
+    position: fixed;
+    z-index: 10;
+    bottom: 0;
+    width: 100%;
+  }
+
+  .btn-choose {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 10px auto;
+    border-radius: 999rem;
+    box-shadow: 0 0.125rem 0.5rem #0004;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :global(.toast-item) {
+      background-color: #333 !important;
+      color: #eee !important;
+    }
+  }
+
+  @media (prefers-color-scheme: light) {
+    :global(.toast-item) {
+      background-color: #fff !important;
+      color: #333 !important;
+    }
+  }
+
+  button {
+    touch-action: manipulation;
   }
 </style>

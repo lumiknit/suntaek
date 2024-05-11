@@ -10,20 +10,20 @@
     "format": "prettier --write ."
   },
   "devDependencies": {
-    "@sveltejs/vite-plugin-svelte": "^3.0.2",
+    "@sveltejs/vite-plugin-svelte": "^3.1.0",
     "prettier": "^3.2.5",
-    "prettier-plugin-svelte": "^3.2.2",
-    "svelte": "^4.2.12",
-    "vite": "^5.1.6",
-    "vite-bundle-visualizer": "^1.0.1"
+    "prettier-plugin-svelte": "^3.2.3",
+    "svelte": "^4.2.16",
+    "vite": "^5.2.11",
+    "vite-bundle-visualizer": "^1.1.0"
   },
   "dependencies": {
     "@picocss/pico": "^2.0.6",
-    "i18next": "^23.10.1",
-    "i18next-browser-languagedetector": "^7.2.0",
-    "i18next-http-backend": "^2.5.0",
+    "i18next": "^23.11.4",
+    "i18next-browser-languagedetector": "^7.2.1",
+    "i18next-http-backend": "^2.5.1",
     "svelte-french-toast": "^1.2.0",
     "svelte-i18next": "^2.2.2",
-    "svelte-icons-pack": "^2.1.0"
+    "svelte-icons-pack": "^2.1.1"
   }
 }
