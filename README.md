@@ -1,6 +1,6 @@
 # Suntaek
 
-See demo at [lumiknit.github.io/app/suntaek](https://lumiknit.github.io/app/suntaek)
+See demo at [lumiknit.github.io/apps/suntaek](https://lumiknit.github.io/apps/suntaek)
 
 Simple random choose web app.
 
