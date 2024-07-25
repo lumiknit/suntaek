@@ -7,9 +7,11 @@
   import BsTrash from "svelte-icons-pack/bs/BsTrash";
   import BsPlusSquare from "svelte-icons-pack/bs/BsPlusSquare";
   import BsDice3 from "svelte-icons-pack/bs/BsDice3";
+  import HiSolidSparkles from "svelte-icons-pack/hi/HiSolidSparkles";
   import { rollDice } from "./lib/dice";
 
   import i18n from "./lang";
+  import LLMView from "./LLMView.svelte";
 
   let allowDuplicates = true;
   let count = 1;
@@ -89,6 +91,10 @@
       choices = choices.filter((_, i) => i !== idx);
     }
   };
+
+  const handleLLMResult = (lines) => {
+    choices = lines;
+  };
 </script>
 
 <header class="container">
@@ -163,6 +169,12 @@
       <Icon src={BsPlusSquare} />
     </button>
   </fieldset>
+  <details>
+    <summary> <Icon src={HiSolidSparkles} /> AI</summary>
+    <p class="box">
+      <LLMView onLLMResult={handleLLMResult} />
+    </p>
+  </details>
 
   <h4>{$i18n.t("tips.title")}</h4>
   <ul>
@@ -197,11 +209,6 @@
 <style>
   :root {
     margin: 0.5rem 0rem;
-  }
-
-  .line {
-    width: 100%;
-    margin-bottom: 1rem;
   }
 
   li.chosen {
@@ -264,5 +271,15 @@
 
   button {
     touch-action: manipulation;
+  }
+
+  summary {
+    text-align: center;
+  }
+
+  .box {
+    padding: 1rem;
+    background-color: #8881;
+    border-radius: 1rem;
   }
 </style>

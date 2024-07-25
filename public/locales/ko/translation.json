@@ -32,6 +32,24 @@
     "2_eg1": "예: 육면체 주사위 1개를 굴리려면",
     "2_eg2": "예: 사면체 주사위 4개를 굴리고 2를 더하려면"
   },
+  "llm_view": {
+    "label": {
+      "generate": "생성하기",
+      "your_request": "요구사항",
+      "your_prompt_here": "여기에 프롬프트 입력",
+      "system_prompt": "시스템 프롬프트",
+      "llm_type": "LLM 유형",
+      "model": "모델",
+      "api_key": "API 키",
+      "get_from_here": "여기서 찾을 수 있어요!",
+      "base_url": "기반 URL"
+    },
+    "toast": {
+      "generating": "생성 중...",
+      "generated": "생성 완료!",
+      "failed": "생성하지 못했어요.. 오류 응답을 확인해주세요."
+    }
+  },
   "toast": {
     "success_chosen": "골랐어요!",
     "error_no_items_to_choose": "고를 항목이 없어요!",

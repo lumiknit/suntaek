@@ -32,6 +32,24 @@
     "2_2": "e.g. roll a 6-sided dice",
     "2_3": "e.g. roll four 4-sided dice and add 2"
   },
+  "llm_view": {
+    "label": {
+      "generate": "Generate",
+      "your_request": "Your Request",
+      "your_prompt_here": "Your Prompt Here",
+      "system_prompt": "System Prompt",
+      "llm_type": "LLM Type",
+      "model": "Model",
+      "api_key": "API Key",
+      "get_from_here": "Get from here!",
+      "base_url": "Base URL"
+    },
+    "toast": {
+      "generating": "Generating...",
+      "generated": "Generated!",
+      "failed": "Failed to generate.. Please check error response."
+    }
+  },
   "toast": {
     "success_chosen": "Chosen!",
     "error_no_items_to_choose": "Nothing to choose!",
