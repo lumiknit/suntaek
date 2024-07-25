@@ -54,10 +54,11 @@ You are a helper to list up the options which will be randomly chosen.
     llmType = c.type || TYPES[0];
 
     const i = LLM_INFO[llmType];
-    baseURL = c.baseURL || i.baseURL;
+    baseURL = c.baseURL || i.defaultBaseURL;
     models = i.models;
     model = c.model || i.models[0];
     apiKey = c.apiKey || "";
+    apiKeyURL = i.apiKeyURL;
     config = c;
   });
 
