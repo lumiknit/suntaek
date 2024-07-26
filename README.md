@@ -1,13 +1,7 @@
 # Suntaek
 
-<<<<<<< HEAD
 Please use this app on
 [lumiknit.github.io/app/suntaek](https://lumiknit.github.io/app/suntaek)!
-||||||| 05bf9bb
-See demo at [lumiknit.github.io/app/suntaek](https://lumiknit.github.io/app/suntaek)
-=======
-See demo at [lumiknit.github.io/apps/suntaek](https://lumiknit.github.io/apps/suntaek)
->>>>>>> main
 
 Simple random choose web app.
 

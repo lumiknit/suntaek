@@ -4,6 +4,7 @@
   import toast, { Toaster } from "svelte-french-toast";
 
   import Icon from "svelte-icons-pack/Icon.svelte";
+  import BsGithub from "svelte-icons-pack/bs/BsGithub";
   import BsTrash from "svelte-icons-pack/bs/BsTrash";
   import BsPlusSquare from "svelte-icons-pack/bs/BsPlusSquare";
   import BsDice3 from "svelte-icons-pack/bs/BsDice3";
@@ -99,8 +100,15 @@
 
 <header class="container">
   <hgroup>
-    <h1>{$i18n.t("title.main")}</h1>
-    <p>{$i18n.t("title.sub")}</p>
+    <div>
+      <h1>{$i18n.t("title.main")}</h1>
+      <p>{$i18n.t("title.sub")}</p>
+    </div>
+    <div class="github">
+      <a href="https://github.com/lumiknit/suntaek" target="_blank">
+        <Icon src={BsGithub} />
+      </a>
+    </div>
   </hgroup>
 </header>
 <Toaster
@@ -207,8 +215,18 @@
 </main>
 
 <style>
-  :root {
-    margin: 0.5rem 0rem;
+  hgroup {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    & > div {
+      line-height: 0;
+    }
+  }
+
+  .github a {
+    font-size: 2rem;
   }
 
   li.chosen {
@@ -242,15 +260,16 @@
   .btn-choose-wrap {
     position: fixed;
     z-index: 10;
+    left: 50%;
     bottom: 0;
-    width: 100%;
+    transform: translateX(-50%);
   }
 
   .btn-choose {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    margin: 10px auto;
+    margin: 1rem auto;
     border-radius: 999rem;
     box-shadow: 0 0.125rem 0.5rem #0004;
   }

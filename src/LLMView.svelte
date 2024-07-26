@@ -51,7 +51,10 @@ You are a helper to list up the options which will be randomly chosen.
 
   onMount(() => {
     const c = loadLLMConfig();
-    llmType = c.type || TYPES[0];
+    llmType = c.type;
+    if (LLM_INFO[llmType] === undefined) {
+      llmType = TYPES[0];
+    }
 
     const i = LLM_INFO[llmType];
     baseURL = c.baseURL || i.defaultBaseURL;
@@ -133,12 +136,18 @@ You are a helper to list up the options which will be randomly chosen.
 
   <label>
     {$i18n.t("llm_view.label.your_request")}
-    <textarea placeholder={$i18n.t("llm_view.label.your_prompt_here")} bind:value={userPrompt} />
+    <textarea
+      placeholder={$i18n.t("llm_view.label.your_prompt_here")}
+      bind:value={userPrompt}
+    />
   </label>
 
   <label>
     {$i18n.t("llm_view.label.system_prompt")}
-    <textarea placeholder={$i18n.t("llm_view.label.system_prompt")} bind:value={systemPrompt} />
+    <textarea
+      placeholder={$i18n.t("llm_view.label.system_prompt")}
+      bind:value={systemPrompt}
+    />
   </label>
 
   <label>
@@ -160,7 +169,9 @@ You are a helper to list up the options which will be randomly chosen.
   </label>
 
   <label>
-    {$i18n.t("llm_view.label.api_key")} (<a href={apiKeyURL} target="_blank">{$i18n.t("llm_view.label.get_from_here")}</a>)
+    {$i18n.t("llm_view.label.api_key")} (<a href={apiKeyURL} target="_blank"
+      >{$i18n.t("llm_view.label.get_from_here")}</a
+    >)
     <input type="text" bind:value={apiKey} required />
   </label>
 
