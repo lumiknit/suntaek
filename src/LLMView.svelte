@@ -139,7 +139,7 @@ You are a helper to list up the options which will be randomly chosen.
     <textarea
       placeholder={$i18n.t("llm_view.label.your_prompt_here")}
       bind:value={userPrompt}
-    />
+    ></textarea>
   </label>
 
   <label>
@@ -147,7 +147,7 @@ You are a helper to list up the options which will be randomly chosen.
     <textarea
       placeholder={$i18n.t("llm_view.label.system_prompt")}
       bind:value={systemPrompt}
-    />
+    ></textarea>
   </label>
 
   <label>
