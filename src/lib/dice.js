@@ -11,7 +11,7 @@ const singleDiceNotation = (count, sides) => {
 
 const allowedNotation = (notation) => {
   // Check if the notation is allowed
-  const regex = /^[-+*/()\d\sd]+$/;
+  const regex = /^((\d*\s*d\s*\d+)|[-+*/()\d\s])+$/;
   return regex.test(notation);
 };
 
@@ -41,9 +41,13 @@ export const rollDice = (notation) => {
     n = newN;
   }
   // Evaluate the result
-  const result = new Function(`return (${n})`)();
-  if (isNaN(result) || !isFinite(result)) {
+  try {
+    const result = new Function(`return (${n})`)();
+    if (isNaN(result) || !isFinite(result)) {
+      return null;
+    }
+    return result;
+  } catch (e) {
     return null;
   }
-  return result;
 };

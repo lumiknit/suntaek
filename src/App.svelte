@@ -75,6 +75,11 @@
 
   const addInputField = () => {
     choices = [...choices, ""];
+    setTimeout(() => {
+      const inputs = document.querySelectorAll("input[type=text].choice-input");
+      const lastInput = inputs[inputs.length - 1];
+      lastInput.focus();
+    }, 10);
   };
 
   const handleKeyDown = (e, idx) => {
@@ -90,6 +95,12 @@
       return;
     } else {
       choices = choices.filter((_, i) => i !== idx);
+    }
+  };
+
+  const handleClearButtonClick = () => {
+    if (confirm($i18n.t("confirm.clear"))) {
+      choices = [""];
     }
   };
 
@@ -155,14 +166,19 @@
 
   <hr />
 
-  <h4>{$i18n.t("output.title", { count: choices.length })}</h4>
+  <h4>
+    {$i18n.t("output.title", { count: choices.filter((x) => x).length })}
+    <button class="secondary" on:click={handleClearButtonClick}>
+      <Icon src={BsTrash} />
+    </button>
+  </h4>
   {#each choices as choice, idx}
     <fieldset role="group">
       <input
+        class="choice-input"
         type="text"
         bind:value={choice}
         on:keydown={(e) => handleKeyDown(e, idx)}
-        autofocus
       />
       <button
         class="secondary btn-delete"
@@ -205,6 +221,7 @@
     </li>
   </ul>
 
+  <!-- svelte-ignore a11y_invalid_attribute -->
   <a
     href="#"
     on:click={(e) => {

@@ -50,6 +50,9 @@
       "failed": "Failed to generate.. Please check error response."
     }
   },
+  "confirm": {
+    "clear": "Do you want to clear all items?"
+  },
   "toast": {
     "success_chosen": "Chosen!",
     "error_no_items_to_choose": "Nothing to choose!",
