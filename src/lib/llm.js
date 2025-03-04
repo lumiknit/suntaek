@@ -72,7 +72,13 @@ export const TYPES = ["gemini", "gpt"];
 
 export const LLM_INFO = {
   gemini: {
-    models: ["gemini-1.5-flash", "gemini-1.5-pro", "gemini-1.0-pro"],
+    models: [
+      "gemini-2.0-flash-lite",
+      "gemini-2.0-flash",
+      "gemini-1.5-flash",
+      "gemini-1.5-pro",
+      "gemini-1.0-pro",
+    ],
     apiKeyURL: "https://aistudio.google.com/app/apikey",
     defaultBaseURL: GEMINI_DEFAULT_BASE_URL,
     run: runGemini,
