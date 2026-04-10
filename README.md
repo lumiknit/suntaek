@@ -1,3 +1,5 @@
+**NOTE: Moved to https://github.com/lumiknit/w-gh-static-apps**
+
 # Suntaek
 
 Please use this app on
